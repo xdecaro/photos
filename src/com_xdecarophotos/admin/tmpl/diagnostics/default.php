@@ -1,0 +1,2 @@
+<?php defined('_JEXEC') or die; ?>
+<div class="xdecaro-scope"><section class="xdecaro-card"><div class="xdecaro-card__body"><h2>Diagnostica Photos</h2><dl><?php foreach($this->diagnostics as $key=>$value): ?><dt><?php echo htmlspecialchars((string)$key,ENT_QUOTES,'UTF-8'); ?></dt><dd><?php echo htmlspecialchars(is_array($value)?implode(', ',$value):(is_bool($value)?($value?'Sì':'No'):(string)$value),ENT_QUOTES,'UTF-8'); ?></dd><?php endforeach; ?></dl></div></section></div>
