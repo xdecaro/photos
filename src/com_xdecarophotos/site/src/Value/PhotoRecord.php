@@ -22,7 +22,7 @@ final class PhotoRecord
     public static function fromPayload(int $id, EntityReference $owner, array $payload): self
     {
         $ctx=$payload['context']??null;
-        return new self($id,$owner->component,$owner->entity,(string)$owner->id,$ctx?->component,$ctx?->entity,$ctx?(string)$ctx->id:null,(string)($payload['photo_type']??'original'),(string)($payload['original_path']??''),(string)($payload['mime_type']??''),(bool)($payload['is_primary']??false),(int)($payload['status']??1),isset($payload['season'])?(string)$payload['season']:null);
+        return new self($id,$owner->getComponent(),$owner->getEntity(),$owner->getId(),$ctx?->getComponent(),$ctx?->getEntity(),$ctx?->getId(),(string)($payload['photo_type']??'original'),(string)($payload['original_path']??''),(string)($payload['mime_type']??''),(bool)($payload['is_primary']??false),(int)($payload['status']??1),isset($payload['season'])?(string)$payload['season']:null);
     }
     public function samePrimaryGroup(self $other): bool
     {
