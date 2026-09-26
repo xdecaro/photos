@@ -5,7 +5,6 @@ on:
     branches:
       - feature/photos-v0.1.0
     paths:
-      - '.sync/photos-v0.1.0.tar.gz.b64'
       - '.github/workflows/sync-photos-source.yml'
 
 permissions:
@@ -23,7 +22,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          base64 -d .sync/photos-v0.1.0.tar.gz.b64 > /tmp/photos-v0.1.0.tar.gz
+          cat .sync/photos-v0.1.0.part-* > /tmp/photos-v0.1.0.b64
+          base64 -d /tmp/photos-v0.1.0.b64 > /tmp/photos-v0.1.0.tar.gz
           tar -xzf /tmp/photos-v0.1.0.tar.gz -C .
           rm -rf .sync IMPLEMENTATION_STATUS.md .github/workflows/sync-photos-source.yml
       - name: Commit source
