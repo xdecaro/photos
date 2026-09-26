@@ -39,7 +39,7 @@ final class Pkg_XdecarophotosInstallerScript
             ->select($db->quoteName('manifest_cache'))
             ->from($db->quoteName('#__extensions'))
             ->where($db->quoteName('type') . ' = ' . $db->quote('package'))
-            ->where($db->quoteName('element') . ' = ' . $db->quote('pkg_xdecarocore'));
+            ->where($db->quoteName('element') . ' = ' . $db->quote('pkg_core'));
         $db->setQuery($query);
         $manifest = $db->loadResult();
         if (!$manifest) {
