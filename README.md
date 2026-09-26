@@ -8,9 +8,7 @@
 - Core by xdecaro 2.1.0 or later
 - PHP version supported by the installed Joomla 6.1.3+ runtime
 
-Development version: `0.1.0`.
-
-The v0.1.0 implementation is developed and verified on the `feature/photos-v0.1.0` branch before integration into `main`.
+Development version: `0.1.1`.
 
 ## Development build
 
@@ -18,9 +16,9 @@ The v0.1.0 implementation is developed and verified on the `feature/photos-v0.1.
 bash build/build.sh
 ```
 
-The resulting package is written to `dist/pkg_xdecarophotos_0.1.0.zip`.
+The resulting package is written to `dist/pkg_xdecarophotos_0.1.1.zip`.
 
-### v0.1.0 scope
+### v0.1.1 scope
 
 - secure JPEG/PNG/WebP upload validation;
 - Core `EntityReference` owner/context boundary;
