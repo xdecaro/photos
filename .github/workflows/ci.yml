@@ -1,0 +1,19 @@
+name: photos-ci
+
+on:
+  push:
+    branches:
+      - 'feature/photos-v0.1.0'
+  pull_request:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+      - name: Manifest smoke
+        run: php tests/smoke/manifest-check.php
