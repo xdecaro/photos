@@ -5,7 +5,7 @@
     <creationDate>2026-09-26</creationDate>
     <copyright>(C) xdecaro</copyright>
     <license>GPL-2.0-or-later</license>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
     <description>xdecaro Photos</description>
     <namespace path="src" prefix="xdecaro\Component\Photos">xdecaro\Component\Photos</namespace>
     <administration>
