@@ -8,8 +8,7 @@ final class HtmlView extends BaseHtmlView
     public array $items=[];
     public function display($tpl=null): void
     {
-        $assets=new AssetService(); $assets->useComponents($this->getDocument()->getWebAssetManager());
-        $this->getDocument()->getWebAssetManager()->useStyle('com_xdecarophotos.photos');
+        $wam=$this->getDocument()->getWebAssetManager(); (new AssetService())->useComponents($wam); $wam->getRegistry()->addExtensionRegistryFile('com_xdecarophotos'); $wam->useStyle('com_xdecarophotos.photos');
         $this->items=$this->get('Items')?:[]; parent::display($tpl);
     }
 }
