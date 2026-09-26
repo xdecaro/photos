@@ -22,10 +22,10 @@ final class GdImageProcessor implements ImageProcessor
 }
 final class VariantService
 {
-    public function __construct(private readonly PresetRegistry $presets,private readonly ImageProcessor $processor,private readonly string $variantBase) {}
+    public function __construct(private readonly PresetRegistry $presets,private readonly ImageProcessor $processor,private readonly string $variantBase,private readonly ?VariantRepository $repository=null) {}
     public function createVariantFromPath(int $photoId,string $source,string $preset,array $options=[]): PhotoVariant
     {
         $def=$this->presets->get($preset); $dir=rtrim($this->variantBase,'/\\'); if(!is_dir($dir)&&!mkdir($dir,0755,true)&&!is_dir($dir))throw new RuntimeException('Cannot create variant storage.'); $ext=$def->preserveAlpha?'png':'jpg'; $name=$photoId.'-'.bin2hex(random_bytes(12)).'.'.$ext; $dest=$dir.DIRECTORY_SEPARATOR.$name; $meta=$this->processor->render($source,$dest,$def->aspectRatio,$options+['target_width'=>$def->width]); $relative='variants/'.$name; $publicBase=dirname($dir); if(str_ends_with(str_replace('\\','/',$dir),'/variants'))$absoluteForRelative=$publicBase.DIRECTORY_SEPARATOR.$relative; else $absoluteForRelative=$dest; if($absoluteForRelative!==$dest && !is_file($absoluteForRelative)){$relative=$name;}
-        return new PhotoVariant($photoId,$preset,$relative,(string)$meta['mime'],(int)$meta['width'],(int)$meta['height'],isset($options['crop_x'])?(float)$options['crop_x']:null,isset($options['crop_y'])?(float)$options['crop_y']:null,isset($options['crop_width'])?(float)$options['crop_width']:null,isset($options['crop_height'])?(float)$options['crop_height']:null,(int)($options['rotation']??0),hash_file('sha256',$dest));
+        $variant=new PhotoVariant($photoId,$preset,$relative,(string)$meta['mime'],(int)$meta['width'],(int)$meta['height'],isset($options['crop_x'])?(float)$options['crop_x']:null,isset($options['crop_y'])?(float)$options['crop_y']:null,isset($options['crop_width'])?(float)$options['crop_width']:null,isset($options['crop_height'])?(float)$options['crop_height']:null,(int)($options['rotation']??0),hash_file('sha256',$dest)); return $this->repository?->save($variant) ?? $variant;
     }
 }
