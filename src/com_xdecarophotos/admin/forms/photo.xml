@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset name="photo" label="Photo">
+        <field name="photo" type="file" label="Photo" accept="image/jpeg,image/png,image/webp" required="true" />
+        <field name="photo_type" type="list" label="Type" default="original">
+            <option value="original">Original</option>
+            <option value="avatar">Avatar</option>
+            <option value="passport">Fototessera</option>
+            <option value="card">Tessera</option>
+            <option value="sticker">Figurina</option>
+            <option value="logo">Logo</option>
+            <option value="gallery">Gallery</option>
+        </field>
+    </fieldset>
+</form>

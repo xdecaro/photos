@@ -1,1 +1,0 @@
-Temporary sync marker for native implementation. Source sync follows on the feature branch.

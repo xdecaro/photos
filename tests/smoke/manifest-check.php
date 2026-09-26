@@ -1,47 +1,25 @@
 <?php
-
 declare(strict_types=1);
-
-function fail(string $message): never {
-    fwrite(STDERR, "FAIL: {$message}\n");
-    exit(1);
-}
-
+require dirname(__DIR__) . '/bootstrap.php';
 $root = dirname(__DIR__, 2);
-$versionFile = $root . '/VERSION';
-$componentManifest = $root . '/src/com_xdecarophotos/admin/xdecarophotos.xml';
-$packageManifest = $root . '/package/pkg_xdecarophotos/pkg_xdecarophotos.xml';
-$installer = $root . '/package/pkg_xdecarophotos/script.php';
-
-foreach ([$versionFile, $componentManifest, $packageManifest, $installer] as $file) {
-    if (!is_file($file)) {
-        fail("missing {$file}");
-    }
-}
-
-$version = trim((string) file_get_contents($versionFile));
-if ($version !== '0.1.0') {
-    fail('VERSION must be 0.1.0');
-}
-
-$component = (string) file_get_contents($componentManifest);
-$package = (string) file_get_contents($packageManifest);
-$script = (string) file_get_contents($installer);
-
-$checks = [
-    [$component, '<name>com_xdecarophotos</name>', 'component identifier'],
-    [$component, 'xdecaro\\Component\\Photos', 'component namespace'],
-    [$component, '<version>0.1.0</version>', 'component version'],
-    [$package, '<name>pkg_xdecarophotos</name>', 'package identifier'],
-    [$package, '<version>0.1.0</version>', 'package version'],
-    [$script, "'6.1.3'", 'Joomla minimum'],
-    [$script, "'2.1.0'", 'Core minimum'],
+$required = [
+    'VERSION',
+    'src/com_xdecarophotos/admin/xdecarophotos.xml',
+    'package/pkg_xdecarophotos/pkg_xdecarophotos.xml',
+    'package/pkg_xdecarophotos/script.php',
 ];
-
-foreach ($checks as [$haystack, $needle, $label]) {
-    if (!str_contains($haystack, $needle)) {
-        fail("missing {$label}");
-    }
+foreach ($required as $file) {
+    ok(is_file($root . '/' . $file), "missing {$file}");
 }
-
-echo "PASS manifest contract\n";
+same('0.1.0', trim(file_get_contents($root . '/VERSION')), 'VERSION mismatch');
+$component = file_get_contents($root . '/src/com_xdecarophotos/admin/xdecarophotos.xml');
+$package = file_get_contents($root . '/package/pkg_xdecarophotos/pkg_xdecarophotos.xml');
+$script = file_get_contents($root . '/package/pkg_xdecarophotos/script.php');
+contains('<name>com_xdecarophotos</name>', $component, 'component id');
+contains('prefix="xdecaro\\Component\\Photos"', $component, 'namespace prefix');
+contains('<version>0.1.0</version>', $component, 'component version');
+contains('<name>pkg_xdecarophotos</name>', $package, 'package id');
+contains('<version>0.1.0</version>', $package, 'package version');
+contains("MIN_JOOMLA = '6.1.3'", $script, 'Joomla minimum');
+contains("MIN_CORE = '2.1.0'", $script, 'Core minimum');
+echo "PASS manifest-check\n";
