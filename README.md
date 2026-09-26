@@ -10,6 +10,8 @@
 
 Development version: `0.1.0`.
 
+The v0.1.0 implementation is developed and verified on the `feature/photos-v0.1.0` branch before integration into `main`.
+
 ## Development build
 
 ```bash
