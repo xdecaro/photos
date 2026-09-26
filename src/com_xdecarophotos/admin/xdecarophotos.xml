@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" method="upgrade">
+  <name>com_xdecarophotos</name>
+  <author>xdecaro</author>
+  <version>0.1.0</version>
+  <namespace path="src">xdecaro\Component\Photos</namespace>
+  <install><sql><file driver="mysql" charset="utf8mb4">admin/sql/install.mysql.utf8mb4.sql</file></sql></install>
+  <uninstall><sql><file driver="mysql" charset="utf8mb4">admin/sql/uninstall.mysql.utf8mb4.sql</file></sql></uninstall>
+  <administration>
+    <menu link="index.php?option=com_xdecarophotos&amp;view=gallery">xdecaro Photos</menu>
+    <submenu>
+      <menu link="index.php?option=com_xdecarophotos&amp;view=photos">Foto</menu>
+      <menu link="index.php?option=com_xdecarophotos&amp;view=gallery">Gallery</menu>
+      <menu link="index.php?option=com_xdecarophotos&amp;view=studio">Photo Studio</menu>
+      <menu link="index.php?option=com_xdecarophotos&amp;view=diagnostics">Diagnostica</menu>
+    </submenu>
+    <files folder="admin"><filename>access.xml</filename><filename>config.xml</filename><folder>services</folder><folder>src</folder><folder>tmpl</folder><folder>forms</folder><folder>sql</folder><folder>language</folder></files>
+  </administration>
+  <files folder="site"><folder>services</folder><folder>src</folder></files>
+  <media destination="com_xdecarophotos" folder="media"><folder>css</folder><folder>js</folder><filename>joomla.asset.json</filename></media>
+</extension>
