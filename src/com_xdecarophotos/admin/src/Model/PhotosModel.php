@@ -2,7 +2,7 @@
 declare(strict_types=1);
 namespace xdecaro\Component\Photos\Administrator\Model;
 use Joomla\CMS\MVC\Model\ListModel;
-final class PhotosModel extends ListModel
+class PhotosModel extends ListModel
 {
     protected function populateState($ordering=null,$direction=null): void
     {
