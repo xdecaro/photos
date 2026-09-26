@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="package" method="upgrade">
+  <name>pkg_xdecarophotos</name>
+  <packagename>xdecarophotos</packagename>
+  <version>0.1.0</version>
+  <scriptfile>script.php</scriptfile>
+  <files><file type="component" id="com_xdecarophotos">com_xdecarophotos.zip</file></files>
+</extension>
