@@ -1,0 +1,10 @@
+{
+  "$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
+  "name": "com_xdecarophotos",
+  "version": "0.1.0",
+  "assets": [
+    {"name":"com_xdecarophotos.photos","type":"style","uri":"com_xdecarophotos/css/photos.css"},
+    {"name":"com_xdecarophotos.gallery","type":"script","uri":"com_xdecarophotos/js/gallery.js","attributes":{"defer":true}},
+    {"name":"com_xdecarophotos.studio","type":"script","uri":"com_xdecarophotos/js/photo-studio.js","attributes":{"defer":true}}
+  ]
+}
